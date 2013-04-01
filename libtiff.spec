@@ -1,7 +1,7 @@
 Summary: Library of functions for manipulating TIFF format image files
 Name: libtiff
 Version: 3.9.4
-Release: 1%{?dist}.2
+Release: 1%{?dist}.3
 
 License: libtiff
 Group: System Environment/Libraries
@@ -20,6 +20,7 @@ Patch9: libtiff-checkbytecount.patch
 Patch10: libtiff-tiffdump.patch
 Patch11: libtiff-CVE-2011-0192.patch
 Patch12: libtiff-CVE-2011-1167.patch
+Patch13: libtiff-CVE-2009-5022.patch
 
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: zlib-devel libjpeg-devel
@@ -75,6 +76,7 @@ necessary for some boot packages.
 %patch10 -p1
 %patch11 -p1
 %patch12 -p1
+%patch13 -p1
 
 # Use build system's libtool.m4, not the one in the package.
 rm -f libtool.m4
@@ -183,6 +185,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/*.a
 
 %changelog
+* Wed Apr 13 2011 Tom Lane <tgl@redhat.com> 3.9.4-1.el6_0.3
+- Add fix for CVE-2009-5022
+Resolves: #696143
+
 * Fri Mar 18 2011 Tom Lane <tgl@redhat.com> 3.9.4-1.el6_0.2
 - Fix incorrect fix for CVE-2011-0192
 Resolves: #688829
